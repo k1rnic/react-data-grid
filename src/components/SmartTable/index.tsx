@@ -11,7 +11,7 @@ export type SmartTableProps<T = any> = {
   columns: GridProps['columns'];
 };
 
-const SmartTable = <T,>({ data, columns }: SmartTableProps<T>) => {
+const SmartTable = <T,>({ data = [], columns = [] }: SmartTableProps<T>) => {
   return (
     <Grid rows={data} columns={columns}>
       <Table />

@@ -1,15 +1,11 @@
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
+import usePokedex from '../../hooks/usePokedex';
 import SmartTable, { SmartTableProps } from './';
 
 const columns = [
   { name: 'id', title: 'ID' },
-  { name: 'product', title: 'Product' },
-  { name: 'owner', title: 'Owner' },
-];
-const rows = [
-  { id: 0, product: 'DevExtreme', owner: 'DevExpress' },
-  { id: 1, product: 'DevExtreme Reactive', owner: 'DevExpress' },
+  { name: 'name', title: 'Name' },
 ];
 
 export default {
@@ -17,9 +13,11 @@ export default {
   component: SmartTable,
 } as Meta<SmartTableProps>;
 
-const Template: Story<SmartTableProps> = (args) => (
-  <SmartTable {...args} data={rows} columns={columns} />
-);
+const Template: Story<SmartTableProps> = (args) => {
+  const [{ pokemons }] = usePokedex();
+
+  return <SmartTable {...args} data={pokemons} columns={columns} />;
+};
 
 export const Overview = Template.bind({});
 Overview.args = {};
