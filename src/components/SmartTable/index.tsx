@@ -1,9 +1,23 @@
-import React, { FC } from 'react';
+import {
+  Grid,
+  GridProps,
+  Table,
+  TableHeaderRow,
+} from '@devexpress/dx-react-grid-material-ui';
+import React from 'react';
 
-export type SmartTableProps = {};
+export type SmartTableProps<T = any> = {
+  data: T[];
+  columns: GridProps['columns'];
+};
 
-const SmartTable: FC<SmartTableProps> = () => {
-  return <div>root</div>;
+const SmartTable = <T,>({ data, columns }: SmartTableProps<T>) => {
+  return (
+    <Grid rows={data} columns={columns}>
+      <Table />
+      <TableHeaderRow />
+    </Grid>
+  );
 };
 
 export default SmartTable;
