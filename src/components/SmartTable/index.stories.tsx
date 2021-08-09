@@ -1,8 +1,9 @@
 import { Meta, Story } from '@storybook/react';
 import React, { useState } from 'react';
 import { getUserCards } from '../../utils/faker';
-import SmartTable, { SmartTableProps } from './';
+import SmartTable from './';
 import { SmartTableColumn } from './interfaces/column';
+import { SmartTableProps } from './props';
 
 export default {
   title: 'Components/SmartTable',
