@@ -7,8 +7,13 @@ export type SmartTableStoreProps = {
   dispatchers: ActionDispatchers;
 };
 
+export type SmartTableFeatureProps = Partial<{
+  withSorting: boolean;
+}>;
+
 export type SmartTableProps<T = any> = {
   data: T[];
   columns: SmartTableColumn<T>[];
-  store?: SmartTableStoreProps;
-};
+  store: SmartTableStoreProps;
+  restoreState?: boolean;
+} & SmartTableFeatureProps;

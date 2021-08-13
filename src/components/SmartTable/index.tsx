@@ -1,38 +1,32 @@
-import {
-  Grid,
-  TableHeaderRow,
-  VirtualTable,
-} from '@devexpress/dx-react-grid-material-ui';
-import React, { useEffect, useState } from 'react';
-import useSmartTableStore from './hooks/useSmartTableStore';
+import { Grid } from '@devexpress/dx-react-grid-material-ui';
+import React from 'react';
+import SmartTableProcessing from './plugins/Processing';
+import SmartTableState from './plugins/State';
+import SmartTableStore from './plugins/Store';
 import { SmartTableProps } from './props';
+import SmartTableHeader from './templates/Header';
+import SmartTable from './templates/Table';
 
 const Root = (props: Grid.RootProps) => (
   <Grid.Root {...props} style={{ height: '100%', minHeight: 0 }} />
 );
 
-const SmartTable = <T,>({
+const Core = <T,>({
   data = [],
   columns = [],
-  store: outerStore,
+  store,
+  restoreState,
+  ...props
 }: SmartTableProps<T>) => {
-  const [store, setStore] = useState(useSmartTableStore());
-
-  useEffect(() => {
-    if (outerStore) {
-      setStore(outerStore);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  console.log(store);
-
   return (
     <Grid rows={data} columns={columns} rootComponent={Root}>
-      <VirtualTable height="auto" />
-      <TableHeaderRow />
+      <SmartTableStore store={store} />
+      <SmartTableState restore={restoreState} />
+      <SmartTableProcessing />
+      <SmartTable />
+      <SmartTableHeader {...props} />
     </Grid>
   );
 };
 
-export default SmartTable;
+export default Core;

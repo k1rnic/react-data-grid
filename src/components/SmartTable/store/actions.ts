@@ -21,19 +21,18 @@ type ChangeStateAction = {
 
 export type Actions = ChangeStateAction;
 
-const mapTo = <K extends keyof State>(slice: K, value: State[K]) =>
-  ({
-    type: ActionTypes.ChangeState,
-    payload: { slice, value },
-  } as const);
+const mapTo = <K extends keyof State>(slice: K, value: State[K]) => ({
+  type: ActionTypes.ChangeState,
+  payload: { slice, value },
+});
 
 export const mapToDispatch = (d: Dispatch<Actions>) => ({
   sort: (val: Sorting[]) => d(mapTo('sorting', val)),
   filter: (val: Filter[]) => d(mapTo('filtering', val)),
   select: (val: ReactText[]) => d(mapTo('selection', val)),
   reorder: (val: string[]) => d(mapTo('order', val)),
+  resize: (val: TableColumnWidthInfo[]) => d(mapTo('columnWidths', val)),
   toggleColumns: (val: string[]) => d(mapTo('hiddenColumnNames', val)),
-  resizeColumns: (val: TableColumnWidthInfo[]) => d(mapTo('columnWidths', val)),
 });
 
 export type ActionDispatchers = ReturnType<typeof mapToDispatch>;

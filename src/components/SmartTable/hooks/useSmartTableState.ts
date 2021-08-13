@@ -3,13 +3,9 @@ import { SmartTableStoreProps } from '../props';
 import { mapToDispatch } from '../store/actions';
 import reducer, { initialState, State } from '../store/reducer';
 
-type Props = {
-  state?: Partial<State>;
-};
-
-const useSmartTableStore = ({
-  state: userDefinedState,
-}: Props = {}): SmartTableStoreProps => {
+const useSmartTableState = (
+  userDefinedState: Partial<State> = {},
+): SmartTableStoreProps => {
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
     ...userDefinedState,
@@ -20,4 +16,4 @@ const useSmartTableStore = ({
   return { state, dispatchers };
 };
 
-export default useSmartTableStore;
+export default useSmartTableState;
