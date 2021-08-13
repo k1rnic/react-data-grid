@@ -15,13 +15,12 @@ const Core = <T,>({
   data = [],
   columns = [],
   store,
-  restoreState,
   ...props
 }: SmartTableProps<T>) => {
   return (
     <Grid rows={data} columns={columns} rootComponent={Root}>
       <SmartTableStore store={store} />
-      <SmartTableState restore={restoreState} />
+      <SmartTableState />
       <SmartTableProcessing />
       <SmartTable />
       <SmartTableHeader {...props} />

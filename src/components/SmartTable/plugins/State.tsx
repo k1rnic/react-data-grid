@@ -9,11 +9,7 @@ import { PluginConnectorGetters } from '../interfaces/plugin';
 
 const deps: IDependency[] = [{ name: 'StorePlugin' }];
 
-type Props = {
-  restore?: boolean;
-};
-
-const State = ({ restore = false }: Props) => {
+const State = () => {
   return (
     <Plugin name="StatePlugin" dependencies={deps}>
       <TemplateConnector>
