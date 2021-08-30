@@ -14,6 +14,7 @@ const Root = (props: Grid.RootProps) => (
 const Core = <T,>({
   data = [],
   columns = [],
+  formatters = [],
   store,
   ...props
 }: SmartTableProps<T>) => {
@@ -22,6 +23,9 @@ const Core = <T,>({
       <SmartTableStore store={store} />
       <SmartTableState />
       <SmartTableProcessing />
+
+      {formatters.length && formatters}
+
       <SmartTable />
       <SmartTableHeader {...props} />
     </Grid>

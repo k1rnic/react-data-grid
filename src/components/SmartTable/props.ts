@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { SmartTableColumn } from './interfaces/column';
 import { ActionDispatchers } from './store/actions';
 import { State } from './store/reducer';
@@ -16,4 +17,5 @@ export type SmartTableProps<T = any> = {
   columns: SmartTableColumn<T>[];
   store: SmartTableStoreProps;
   restoreState?: boolean;
+  formatters?: ReactNode[];
 } & SmartTableFeatureProps;

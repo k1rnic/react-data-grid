@@ -3,6 +3,10 @@ import React, { useEffect } from 'react';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { getUserCards } from '../../utils/faker';
 import SmartTable from './';
+import {
+  SmartTableBooleanFormatter,
+  SmartTableDateFormatter,
+} from './formatters';
 import useSmartTableState from './hooks/useSmartTableState';
 import { SmartTableColumn } from './interfaces/column';
 import { SmartTableProps } from './props';
@@ -47,8 +51,34 @@ export const WithSorting: Story<SmartTableProps> = (args) => {
   return <SmartTable {...args} withSorting store={store} />;
 };
 
+export const Formatters: Story<SmartTableProps<Faker.ContextualCard>> = (
+  args,
+) => {
+  const store = useSmartTableState();
+
+  return (
+    <SmartTable
+      {...args}
+      withSorting
+      columns={[
+        ...COLUMNS,
+        { name: 'dob', title: 'Day of birth' },
+        {
+          name: 'startsWithA',
+          getCellValue: ({ name }) => name.toLowerCase().startsWith('a'),
+        },
+      ]}
+      formatters={[
+        <SmartTableDateFormatter key="dob" for={['dob']} format="datetime" />,
+        <SmartTableBooleanFormatter key="startsWithA" for={['startsWithA']} />,
+      ]}
+      store={store}
+    />
+  );
+};
+
 export const StoredState: Story<SmartTableProps> = (args) => {
-  const [storedState, storeState] = useLocalStorage(
+  const [storedState, setStoredState] = useLocalStorage(
     'meta/stored_state',
     {} as Partial<State>,
   );
@@ -56,7 +86,7 @@ export const StoredState: Story<SmartTableProps> = (args) => {
   const store = useSmartTableState(storedState);
 
   useEffect(() => {
-    storeState(store.state);
+    setStoredState(store.state);
   }, [store.state]);
 
   return <SmartTable {...args} withSorting store={store} />;

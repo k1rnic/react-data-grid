@@ -7,9 +7,12 @@ export type SmartTableColumnType =
   | 'datetime'
   | 'time';
 
-export type SmartTableColumn<T = any> = {
-  name: keyof T;
+export type SmartTableColumn<T = any> = Omit<
+  GridProps['columns'][number],
+  'getCellValue'
+> & {
+  name: keyof T | (string & {});
   type?: SmartTableColumnType;
   width?: number;
-  getCellValue?: (row: T, columnName: keyof T) => any;
-} & GridProps['columns'][number];
+  getCellValue?: (row: T, columnName: keyof T | (string & {})) => any;
+};
