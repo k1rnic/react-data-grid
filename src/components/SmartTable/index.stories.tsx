@@ -51,7 +51,7 @@ export const WithSorting: Story<SmartTableProps> = (args) => {
   return <SmartTable {...args} withSorting store={store} />;
 };
 
-export const Formatters: Story<SmartTableProps<Faker.ContextualCard>> = (
+export const WithFormatting: Story<SmartTableProps<Faker.ContextualCard>> = (
   args,
 ) => {
   const store = useSmartTableState();

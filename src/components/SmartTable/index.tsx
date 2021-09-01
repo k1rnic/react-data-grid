@@ -1,5 +1,6 @@
 import { Grid } from '@devexpress/dx-react-grid-material-ui';
 import React from 'react';
+import { SmartTableFormatters } from './formatters';
 import SmartTableProcessing from './plugins/Processing';
 import SmartTableState from './plugins/State';
 import SmartTableStore from './plugins/Store';
@@ -11,7 +12,7 @@ const Root = (props: Grid.RootProps) => (
   <Grid.Root {...props} style={{ height: '100%', minHeight: 0 }} />
 );
 
-const Core = <T,>({
+export default <T,>({
   data = [],
   columns = [],
   formatters = [],
@@ -24,12 +25,10 @@ const Core = <T,>({
       <SmartTableState />
       <SmartTableProcessing />
 
-      {formatters.length && formatters}
+      <SmartTableFormatters formatters={formatters} />
 
       <SmartTable />
-      <SmartTableHeader {...props} />
+      <SmartTableHeader withSorting={props.withSorting} />
     </Grid>
   );
 };
-
-export default Core;

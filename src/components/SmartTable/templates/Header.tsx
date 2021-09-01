@@ -6,7 +6,7 @@ import { SmartTableFeatureProps } from '../props';
 type Props = SmartTableFeatureProps;
 
 const Header = ({ withSorting }: Props) => (
-  <Plugin>
+  <Plugin name="SmartTableHeader">
     <TableHeaderRow showSortingControls={withSorting} />
   </Plugin>
 );
