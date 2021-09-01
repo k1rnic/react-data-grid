@@ -11,6 +11,7 @@ import useSmartTableState from './hooks/useSmartTableState';
 import { SmartTableColumn } from './interfaces/column';
 import { SmartTableProps } from './props';
 import { State } from './store/reducer';
+import { SmartTableToolbarItem } from './templates';
 
 const COLUMNS: SmartTableColumn<Faker.ContextualCard>[] = [
   { name: 'name' },
@@ -46,7 +47,9 @@ export const Overview: Story<SmartTableProps> = (args) => {
 };
 
 export const WithSorting: Story<SmartTableProps> = (args) => {
-  const store = useSmartTableState();
+  const store = useSmartTableState({
+    sorting: [{ columnName: 'name', direction: 'desc' }],
+  });
 
   return <SmartTable {...args} withSorting store={store} />;
 };
@@ -78,10 +81,9 @@ export const WithFormatting: Story<SmartTableProps<Faker.ContextualCard>> = (
 };
 
 export const StoredState: Story<SmartTableProps> = (args) => {
-  const [storedState, setStoredState] = useLocalStorage(
-    'meta/stored_state',
-    {} as Partial<State>,
-  );
+  const [storedState, setStoredState] = useLocalStorage('meta/stored_state', {
+    sorting: [{ columnName: 'name', direction: 'desc' }],
+  } as Partial<State>);
 
   const store = useSmartTableState(storedState);
 
@@ -90,4 +92,21 @@ export const StoredState: Story<SmartTableProps> = (args) => {
   }, [store.state]);
 
   return <SmartTable {...args} withSorting store={store} />;
+};
+
+export const WithToolbar: Story<SmartTableProps> = (args) => {
+  const store = useSmartTableState();
+
+  return (
+    <SmartTable
+      {...args}
+      withSorting
+      store={store}
+      toolbarItems={[
+        <SmartTableToolbarItem position="left">left</SmartTableToolbarItem>,
+        <SmartTableToolbarItem position="center">center</SmartTableToolbarItem>,
+        <SmartTableToolbarItem position="right">right</SmartTableToolbarItem>,
+      ]}
+    />
+  );
 };

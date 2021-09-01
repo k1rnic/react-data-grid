@@ -18,4 +18,5 @@ export type SmartTableProps<T = any> = {
   store: SmartTableStoreProps;
   restoreState?: boolean;
   formatters?: ReactNode[];
+  toolbarItems?: ReactNode[];
 } & SmartTableFeatureProps;
