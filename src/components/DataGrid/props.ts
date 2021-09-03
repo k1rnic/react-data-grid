@@ -1,22 +1,22 @@
 import { ReactNode } from 'react';
-import { SmartTableColumn } from './interfaces/column';
+import { DataGridColumn } from './interfaces/column';
 import { ActionDispatchers } from './store/actions';
 import { State } from './store/reducer';
 
-export type SmartTableStoreProps = {
+export type DataGridStoreProps = {
   state: State;
   dispatchers: ActionDispatchers;
 };
 
-export type SmartTableFeatureProps = Partial<{
+export type DataGridFeatureProps = Partial<{
   withSorting: boolean;
 }>;
 
-export type SmartTableProps<T = any> = {
+export type DataGridProps<T = any> = {
   data: T[];
-  columns: SmartTableColumn<T>[];
-  store: SmartTableStoreProps;
+  columns: DataGridColumn<T>[];
+  store: DataGridStoreProps;
   restoreState?: boolean;
   formatters?: ReactNode[];
   toolbarItems?: ReactNode[];
-} & SmartTableFeatureProps;
+} & DataGridFeatureProps;

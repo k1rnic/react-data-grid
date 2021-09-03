@@ -12,7 +12,7 @@ type Props = {
 };
 
 export default ({ items }: Props) => (
-  <Plugin name="SmartTableToolbar">
+  <Plugin name="DataGridToolbar">
     <Toolbar />
     <Template name="toolbarContent">
       <Grid container spacing={1} justifyContent="space-between">

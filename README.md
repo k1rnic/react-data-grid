@@ -1,6 +1,6 @@
-# react-smart-table
+# react-data-grid
 
-Pluggable smart table based on reactive-devextreme
+Pluggable data-grid based on reactive-devextreme
 
 ## Features
 

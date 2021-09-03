@@ -1,9 +1,9 @@
 import { Getter, Plugin } from '@devexpress/dx-react-core';
 import React from 'react';
-import { SmartTableStoreProps } from '../props';
+import { DataGridStoreProps } from '../props';
 
 type Props = {
-  store: SmartTableStoreProps;
+  store: DataGridStoreProps;
 };
 
 const Store = ({ store: { state, dispatchers } }: Props) => {

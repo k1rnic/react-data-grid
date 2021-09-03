@@ -4,7 +4,7 @@ import React from 'react';
 
 const Table = () => {
   return (
-    <Plugin name="SmartTable">
+    <Plugin name="DataGrid">
       <VirtualTable height="auto" />
     </Plugin>
   );

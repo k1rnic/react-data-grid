@@ -1,11 +1,11 @@
 import { useReducer } from 'react';
-import { SmartTableStoreProps } from '../props';
+import { DataGridStoreProps } from '../props';
 import { mapToDispatch } from '../store/actions';
 import reducer, { initialState, State } from '../store/reducer';
 
-const useSmartTableState = (
+const useDataGridState = (
   userDefinedState: Partial<State> = {},
-): SmartTableStoreProps => {
+): DataGridStoreProps => {
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
     ...userDefinedState,
@@ -16,4 +16,4 @@ const useSmartTableState = (
   return { state, dispatchers };
 };
 
-export default useSmartTableState;
+export default useDataGridState;

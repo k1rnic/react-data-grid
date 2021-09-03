@@ -28,7 +28,7 @@ export default ({ position, children }: Props) => {
   }, [position]);
 
   return (
-    <Plugin name="SmartTableToolbarItem" dependencies={dependencies}>
+    <Plugin name="DataGridToolbarItem" dependencies={dependencies}>
       <Template name={toolbarItemPosition}>
         <TemplatePlaceholder />
         <Grid item>{children}</Grid>
