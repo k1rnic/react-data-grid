@@ -11,22 +11,25 @@ type Props = {
   items: ReactNode[];
 };
 
-export default ({ items }: Props) => (
-  <Plugin name="DataGridToolbar">
-    <Toolbar />
-    <Template name="toolbarContent">
-      <Grid container spacing={1} justifyContent="space-between">
-        <Grid item container xs={4} spacing={1} justifyContent="flex-start">
-          <TemplatePlaceholder name="toolbarItemLeft" />
+export default ({ items }: Props) =>
+  items.length ? (
+    <Plugin name="DataGridToolbar">
+      <Toolbar />
+      <Template name="toolbarContent">
+        <Grid container spacing={1} justifyContent="space-between">
+          <Grid item container xs={4} spacing={1} justifyContent="flex-start">
+            <TemplatePlaceholder name="toolbarItemLeft" />
+          </Grid>
+          <Grid item container xs={4} spacing={1} justifyContent="center">
+            <TemplatePlaceholder name="toolbarItemCenter" />
+          </Grid>
+          <Grid item container xs={4} spacing={1} justifyContent="flex-end">
+            <TemplatePlaceholder name="toolbarItemRight" />
+          </Grid>
         </Grid>
-        <Grid item container xs={4} spacing={1} justifyContent="center">
-          <TemplatePlaceholder name="toolbarItemCenter" />
-        </Grid>
-        <Grid item container xs={4} spacing={1} justifyContent="flex-end">
-          <TemplatePlaceholder name="toolbarItemRight" />
-        </Grid>
-      </Grid>
-    </Template>
-    {items}
-  </Plugin>
-);
+      </Template>
+      {items}
+    </Plugin>
+  ) : (
+    <></>
+  );
